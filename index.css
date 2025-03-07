@@ -1,0 +1,165 @@
+.tile0 {
+  width: 162px;
+  height: 162px;
+  background-image: url("./assets/scramble-image.jpg");
+  background-position: 0% 0%;
+  border: 1px solid white;
+}
+.tile1 {
+  width: 162px;
+  height: 162px;
+  background: url("./assets/scramble-image.jpg");
+  background-position: 51% 0%;
+  border: 1px solid white;
+}
+
+.tile2 {
+  width: 162px;
+  height: 162px;
+  background: url("./assets/scramble-image.jpg");
+  background-position: 103% 0%;
+  border: 1px solid white;
+}
+
+.tile3 {
+  width: 162px;
+  height: 162px;
+  background: url("./assets/scramble-image.jpg");
+  background-position: 0% 53%;
+  border: 1px solid white;
+}
+
+.tile4 {
+  width: 162px;
+  height: 162px;
+  background: url("./assets/scramble-image.jpg");
+  background-position: 51% 53%;
+  border: 1px solid white;
+}
+
+.tile5 {
+  width: 162px;
+  height: 162px;
+  background: url("./assets/scramble-image.jpg");
+  background-position: 101% 50%;
+  border: 1px solid white;
+}
+
+.tile6 {
+  width: 162px;
+  height: 162px;
+  background: url("./assets/scramble-image.jpg");
+  background-position: 0% 105%;
+  border: 1px solid white;
+}
+
+.tile7 {
+  width: 162px;
+  height: 162px;
+  background: url("./assets/scramble-image.jpg");
+  background-position: 51% 105%;
+  border: 1px solid white;
+}
+
+.tile8 {
+  width: 162px;
+  height: 162px;
+  border: 1px solid white;
+}
+
+/* document.addEventListener("keydown", (event) => {
+  event.preventDefault();
+  let tiles = document.getElementById("mainDiv").children;
+  let emptyDivIndex = Array.from(tiles).findIndex((tile) => tile.id === "8");
+  let emptyRow = Math.floor(emptyDivIndex / 3);
+  let emptyCol = emptyDivIndex % 3;
+
+  let targetIndex = -1;
+
+  switch (event.key) {
+    case "ArrowUp":
+      if (emptyRow > 0) {
+        targetIndex = emptyDivIndex - 3;
+      }
+      // let upperTile = emptyDivIndex + 3;
+      // console.log(upperTile);
+      // document
+      //   .getElementById(`${upperTile}`)
+      //   .classList.remove(`tile${upperTile}`);
+      // document.getElementById(`${upperTile}`).classList.add(`tile${8}`);
+      // document.getElementById(`${emptyDiv}`).classList.remove(`tile${8}`);
+      // document.getElementById(`${emptyDiv}`).classList.add(`tile${upperTile}`);
+      break;
+
+    case "ArrowDown":
+      if (emptyRow < 2) {
+        targetIndex = emptyDivIndex + 3;
+      }
+      // let lowerTile = emptyDivIndex - 3;
+      // console.log(lowerTile);
+      // document
+      //   .getElementById(`${lowerTile}`)
+      //   .classList.remove(`tile${lowerTile}`);
+      // document.getElementById(`${lowerTile}`).classList.add(`tile${8}`);
+      // document.getElementById(`${emptyDiv}`).classList.remove(`tile${8}`);
+      // document.getElementById(`${emptyDiv}`).classList.add(`tile${lowerTile}`);
+      break;
+
+    case "ArrowRight":
+      if (emptyCol < 2) {
+        targetIndex = emptyDivIndex + 1;
+      }
+
+      // let rightTile = emptyDivIndex - 1;
+      // console.log(rightTile);
+      // document
+      //   .getElementById(`${rightTile}`)
+      //   .classList.remove(`tile${rightTile}`);
+      // document.getElementById(`${rightTile}`).classList.add(`tile${8}`);
+      // document.getElementById(`${emptyDiv}`).classList.remove(`tile${8}`);
+      // document.getElementById(`${emptyDiv}`).classList.add(`tile${rightTile}`);
+      break;
+
+    case "ArrowLeft":
+      if (emptyCol > 0) {
+        targetIndex = emptyDivIndex - 1;
+      }
+      // let leftTile = emptyDivIndex + 1;
+      // console.log(leftTile);
+      // document
+      //   .getElementById(`${leftTile}`)
+      //   .classList.remove(`tile${leftTile}`);
+      // document.getElementById(`${leftTile}`).classList.add(`tile${8}`);
+      // document.getElementById(`${emptyDiv}`).classList.remove(`tile${8}`);
+      // document.getElementById(`${emptyDiv}`).classList.add(`tile${leftTile}`);
+      break;
+  }
+
+  if (targetIndex !== -1) {
+    const emptyTile = tiles[emptyDivIndex];
+    const targetTile = tiles[targetIndex];
+
+    const tempId = emptyTile.id;
+    emptyTile.id = targetTile.id;
+    targetTile.id = tempId;
+
+    const tempClass = emptyTile.className;
+    emptyTile.className = targetTile.className;
+    targetTile.className = tempClass;
+    isMatching();
+  }
+});
+
+function isMatching() {
+  const currentTiles = document.getElementById("mainDiv").children;
+  let len = 0;
+  let count = 0;
+  while (len <= currentTiles.length) {
+    if (len === parseInt(currentTiles[i].id)) {
+      count++;
+    }
+  }
+  if (count === 8) {
+    alert("You Solved the puzzle");
+  }
+} */
