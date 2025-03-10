@@ -1,3 +1,85 @@
+let imageArray = [
+  "./assets/scramble-image.jpg",
+  "./assets/reacingCarsOnIce_imresizer.jpg",
+  "./assets/steveJobs_imresizer.jpg",
+  "./assets/Bigmesstoys_imresizer.jpg",
+];
+
+const tileStyles = [
+  {
+    className: "tile0",
+    width: "165px",
+    height: "165px",
+    backgroundSize: "295%",
+    backgroundPosition: "0% 0%",
+    border: "1px solid white",
+  },
+  {
+    className: "tile1",
+    width: "165px",
+    height: "165px",
+    backgroundSize: "295%",
+    backgroundPosition: "51% 0%",
+    border: "1px solid white",
+  },
+  {
+    className: "tile2",
+    width: "165px",
+    height: "165px",
+    backgroundSize: "295%",
+    backgroundPosition: "103% 0%",
+    border: "1px solid white",
+  },
+  {
+    className: "tile3",
+    width: "165px",
+    height: "165px",
+    backgroundSize: "295%",
+    backgroundPosition: "0% 53%",
+    border: "1px solid white",
+  },
+  {
+    className: "tile4",
+    width: "165px",
+    height: "165px",
+    backgroundSize: "295%",
+    backgroundPosition: "51% 53%",
+    border: "1px solid white",
+  },
+  {
+    className: "tile5",
+    width: "165px",
+    height: "165px",
+    backgroundSize: "295%",
+    backgroundPosition: "102% 52%",
+    border: "1px solid white",
+  },
+  {
+    className: "tile6",
+    width: "165px",
+    height: "165px",
+    backgroundSize: "295%",
+    backgroundPosition: "0% 105%",
+    border: "1px solid white",
+  },
+  {
+    className: "tile7",
+    width: "165px",
+    height: "165px",
+    backgroundSize: "295%",
+    backgroundPosition: "51% 105%",
+    border: "1px solid white",
+  },
+  {
+    className: "tile8",
+    width: "165px",
+    height: "165px",
+    border: "1px solid white",
+  },
+];
+
+let count = 0;
+
 function shuffle() {
   var arr = [];
   while (arr.length < 9) {
@@ -6,37 +88,81 @@ function shuffle() {
   }
   return arr;
 }
+
 function loadGame() {
+  let divObjects = shuffle();
+  const randomImageIndex = Math.floor(Math.random() * 4);
+  const selectedImage = imageArray[randomImageIndex];
+
+  const heading = document.createElement("h1");
+  heading.textContent = "Scrambled Image Puzzle";
+  heading.style.position = "absolute";
+  heading.style.top = "10px";
+  document.body.appendChild(heading);
+  document.body.style.backgroundColor = "rgb(218, 203, 185)";
+
+  const moves = document.createElement("h2");
+  moves.setAttribute("id", "moves");
+  moves.textContent = `Moves : ${count}`;
+  moves.style.position = "absolute";
+  moves.style.top = "110px";
+
+  document.body.appendChild(moves);
+
+  const imagePreview = document.createElement("img");
+  imagePreview.setAttribute("src", selectedImage);
+  imagePreview.style.borderRadius = "10px";
+  document.body.appendChild(imagePreview);
+
   document.body.style.display = "flex";
   document.body.style.justifyContent = "space-evenly";
   document.body.style.alignItems = "center";
+
   const mainDiv = document.createElement("div");
   mainDiv.setAttribute("id", "mainDiv");
   mainDiv.style.width = "500px";
   mainDiv.style.height = "500px";
-  mainDiv.style.backgroundColor = "black";
+  mainDiv.style.backgroundColor = "white";
   mainDiv.style.display = "grid";
   mainDiv.style.gridTemplateColumns = "repeat(3,1fr)";
   mainDiv.style.alignItems = "center";
   mainDiv.style.justifyItems = "center";
+  mainDiv.style.borderRadius = "10px";
   document.body.appendChild(mainDiv);
-  let divObjects = shuffle();
+
+  const styleSheet = document.createElement("style");
+  document.head.appendChild(styleSheet);
 
   for (let i of divObjects) {
     let tileDiv = document.createElement("div");
     tileDiv.setAttribute("id", `${i}`);
     tileDiv.classList.add(`tile${i}`);
-    tileDiv.style.backgroundSize = "295%";
+    if (i === 8) {
+      const tile = tileStyles[i];
+      const cssRule = `
+      .tile${i} {
+        width: ${tile.width};
+        height: ${tile.height};
+        background-image:none;
+        border: ${tile.border};
+      }`;
+      styleSheet.appendChild(document.createTextNode(cssRule));
+    } else {
+      const tile = tileStyles[i];
+      const cssRule = `
+      .tile${i} {
+        width: ${tile.width};
+        height: ${tile.height};
+        background-image: url("${selectedImage}");
+        background-position: ${tile.backgroundPosition};
+        background-size:${tile.backgroundSize};
+        border: ${tile.border};
+      }`;
+      styleSheet.appendChild(document.createTextNode(cssRule));
+    }
+
     mainDiv.appendChild(tileDiv);
   }
-
-  console.log(mainDiv.children);
-
-  const imagePreview = document.createElement("img");
-  imagePreview.setAttribute("src", "./assets/scramble-image.jpg");
-  imagePreview.style.width = "500px";
-  imagePreview.style.height = "500px";
-  document.body.appendChild(imagePreview);
 }
 
 document.addEventListener("keydown", (event) => {
@@ -51,59 +177,30 @@ document.addEventListener("keydown", (event) => {
   switch (event.key) {
     case "ArrowUp":
       if (emptyRow < 2) {
+        count++;
         targetIndex = emptyDivIndex + 3;
       }
-      // let upperTile = emptyDivIndex + 3;
-      // console.log(upperTile);
-      // document
-      //   .getElementById(`${upperTile}`)
-      //   .classList.remove(`tile${upperTile}`);
-      // document.getElementById(`${upperTile}`).classList.add(`tile${8}`);
-      // document.getElementById(`${emptyDiv}`).classList.remove(`tile${8}`);
-      // document.getElementById(`${emptyDiv}`).classList.add(`tile${upperTile}`);
       break;
 
     case "ArrowDown":
       if (emptyRow > 0) {
+        count++;
         targetIndex = emptyDivIndex - 3;
       }
-      // let lowerTile = emptyDivIndex - 3;
-      // console.log(lowerTile);
-      // document
-      //   .getElementById(`${lowerTile}`)
-      //   .classList.remove(`tile${lowerTile}`);
-      // document.getElementById(`${lowerTile}`).classList.add(`tile${8}`);
-      // document.getElementById(`${emptyDiv}`).classList.remove(`tile${8}`);
-      // document.getElementById(`${emptyDiv}`).classList.add(`tile${lowerTile}`);
       break;
 
     case "ArrowRight":
       if (emptyCol > 0) {
+        count++;
         targetIndex = emptyDivIndex - 1;
       }
-
-      // let rightTile = emptyDivIndex - 1;
-      // console.log(rightTile);
-      // document
-      //   .getElementById(`${rightTile}`)
-      //   .classList.remove(`tile${rightTile}`);
-      // document.getElementById(`${rightTile}`).classList.add(`tile${8}`);
-      // document.getElementById(`${emptyDiv}`).classList.remove(`tile${8}`);
-      // document.getElementById(`${emptyDiv}`).classList.add(`tile${rightTile}`);
       break;
 
     case "ArrowLeft":
       if (emptyCol < 2) {
+        count++;
         targetIndex = emptyDivIndex + 1;
       }
-      // let leftTile = emptyDivIndex + 1;
-      // console.log(leftTile);
-      // document
-      //   .getElementById(`${leftTile}`)
-      //   .classList.remove(`tile${leftTile}`);
-      // document.getElementById(`${leftTile}`).classList.add(`tile${8}`);
-      // document.getElementById(`${emptyDiv}`).classList.remove(`tile${8}`);
-      // document.getElementById(`${emptyDiv}`).classList.add(`tile${leftTile}`);
       break;
   }
 
@@ -119,13 +216,14 @@ document.addEventListener("keydown", (event) => {
     emptyTile.className = targetTile.className;
     targetTile.className = tempClass;
   }
+
+  document.getElementById("moves").textContent = `Moves : ${count}`;
+
   isMatching();
 });
 
 function isMatching() {
   const currentTiles = Array.from(document.getElementById("mainDiv").children);
-  console.log(currentTiles.length);
-
   let count = 0;
 
   for (let i = 0; i < currentTiles.length; i++) {
@@ -133,10 +231,10 @@ function isMatching() {
       count++;
     }
   }
-  if (count === 3) {
-    alert("You have solved 33% of the Puzzle");
-  } else if (count === 8) {
+
+  if (count === 9) {
     alert("You have successfully solved the puzzle");
   }
 }
-loadGame();
+
+window.onload = loadGame();
